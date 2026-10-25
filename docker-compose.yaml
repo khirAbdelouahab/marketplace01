@@ -1,0 +1,57 @@
+services:
+  mongodb:
+    image: mongo:8.0
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - marketplace01-net
+  eureka-discovery:
+    image: khiriabdel/eureka-discovery:latest
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+    networks:
+      - marketplace01-net
+
+  gateway:
+    image: khiriabdel/gateway:latest
+    ports:
+      - "9090:9090"
+    environment:
+      EUREKA_SERVER_URL: http://eureka-discovery:8761/eureka/
+    depends_on:
+      - eureka-discovery
+    networks:
+      - marketplace01-net
+
+  user-service:
+    image: khiriabdel/user-service:latest
+    environment:
+      EUREKA_SERVER_URL: http://eureka-discovery:8761/eureka/
+      MONGODB_URI: ${MONGODB_URI}
+    depends_on:
+      eureka-discovery:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+
+    networks:
+      - marketplace01-net
+
+volumes:
+  mongodb-data:
+networks:
+  marketplace01-net:
+    driver: bridge

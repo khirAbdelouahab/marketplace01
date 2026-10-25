@@ -1,0 +1,2 @@
+rootProject.name = 'marketplace01'
+include 'eureka-discovery', 'gateway', 'user-service', 'media-service', 'product-service'

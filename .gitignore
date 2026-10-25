@@ -1,0 +1,116 @@
+
+# ==========================================
+# Git
+# ==========================================
+.git
+.gitignore
+.gitattributes
+
+# ==========================================
+# IDEs and editors
+# ==========================================
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+
+# ==========================================
+# Operating system files
+# ==========================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==========================================
+# Environment variables and secrets
+# ==========================================
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+**/application-local.properties
+**/application-local.yml
+**/application-local.yaml
+**/*secret*
+**/*credentials*
+
+# ==========================================
+# Java / Spring Boot / Maven
+# ==========================================
+**/target/
+**/build/
+**/out/
+**/.gradle/
+**/logs/
+**/*.log
+**/hs_err_pid*
+**/replay_pid*
+
+# Maven Wrapper files should normally be kept
+# mvnw
+# mvnw.cmd
+# .mvn/
+
+# ==========================================
+# Angular / Node.js
+# ==========================================
+**/node_modules/
+**/dist/
+**/coverage/
+**/.angular/
+**/.npm/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/pnpm-debug.log*
+
+# ==========================================
+# Testing and reports
+# ==========================================
+**/test-results/
+**/surefire-reports/
+**/failsafe-reports/
+**/playwright-report/
+**/test-output/
+
+# ==========================================
+# Local databases and persistent data
+# ==========================================
+**/data/
+**/mongodb-data/
+**/mongo-data/
+**/kafka-data/
+**/redis-data/
+
+# ==========================================
+# Uploaded media and temporary files
+# ==========================================
+**/uploads/
+**/tmp/
+**/temp/
+**/cache/
+
+# ==========================================
+# Docker local files
+# ==========================================
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# ==========================================
+# Documentation and screenshots
+# Remove these only if not needed during builds
+# ==========================================
+# docs/
+# **/*.md
+
+# ==========================================
+# Miscellaneous
+# ==========================================
+*.bak
+*.tmp
+*.orig
+*.patch
